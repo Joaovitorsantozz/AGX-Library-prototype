@@ -16,8 +16,8 @@
 }
 
 .loginContainer {
-  width: 40%;
-  height: 50%;
+  width: 50%;
+  height: 55%;
   display: flex;
 
   border-radius: 20px;
@@ -26,17 +26,51 @@
 .loginContainerLS {
   width: 50%;
   height: 100%;
-  border-width: 2px 1px 2px 2px;
-  border-color: rgb(207, 207, 207);
+  border-width: 1px 0px 1px 1px;
+  border-color: #e1e4e6;
+  background-color: #f3f4f5;
   border-style: solid;
   border-radius: 20px 0px 0px 20px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  gap: 15px;
+  padding: 30px 30px;
 }
+.loginContainerImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+}
+.loginContainerFooter {
+  width: 100%;
+  display: flex;
 
+  & > .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    & > h2 {
+      color: rgb(34, 34, 34);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    & > p {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgb(60, 60, 60);
+    }
+  }
+}
 .loginContainerTitle {
   width: 100%;
   display: flex;
@@ -54,19 +88,182 @@
       color: rgb(60, 60, 60);
     }
   }
-  & > .logo{
+  & > .logo {
     width: 48px;
     height: 48px;
-    background-color: rgb(65, 65, 182);
+    background-color: rgb(21, 45, 77);
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     & > img{
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+     }
   }
 }
 
 .loginContainerRS {
   width: 50%;
   height: 100%;
-  border-width: 2px 2px 2px 1px;
+  border-width: 1px 1px 1px 1px;
   border-color: rgb(207, 207, 207);
   border-style: solid;
   border-radius: 0px 20px 20px 0px;
+}
+
+
+
+.loginSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f5f6f8;
+}
+
+
+
+
+
+.loginContainerRS {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #ffffff;
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 420px;
+}
+
+.loginFormHeader {
+  margin-bottom: 30px;
+}
+
+.loginFormHeader h2 {
+  font-size: 30px;
+  margin: 0 0 10px;
+  color: #17252b;
+}
+
+.loginFormHeader p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+
+.loginInputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.loginInputGroup label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #24343b;
+}
+
+.loginInputGroup input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.loginInputGroup input:focus {
+  border-color: #073b46;
+  box-shadow: 0 0 0 3px rgba(7, 59, 70, 0.1);
+}
+
+.loginInputGroup input::placeholder {
+  color: #94a3b8;
+}
+
+
+.loginSubmitButton {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #073b46;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.loginSubmitButton:hover {
+  background-color: #0b5361;
+}
+
+
+.loginFormFooter {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.loginFormFooter p {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.loginFormFooter a {
+  color: #073b46;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.loginFormFooter a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .loginSection {
+    padding: 20px;
+  }
+
+  .loginContainer {
+    min-height: auto;
+  }
+
+  .loginContainerLS {
+    display: none;
+  }
+
+  .loginContainerRS {
+    padding: 35px 25px;
+  }
+
+  .loginFormHeader h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginSection {
+    padding: 10px;
+  }
+
+  .loginContainer {
+    border-radius: 12px;
+  }
+
+  .loginContainerRS {
+    padding: 30px 20px;
+  }
 }

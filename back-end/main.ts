@@ -4,7 +4,7 @@ import { connectToDatabase } from "./database.ts";
 import userRoutes from "./routes/userRoutes.ts";
 import bookRoutes from "./routes/bookRoutes.ts";
 import responserPkg from "responser";
-
+import cors from "cors";
 import ResponserrorPkg from "responserror";
 import throwlhos from "./utils/throwlhos.ts";
 import { Request, Response, NextFunction } from "express";
@@ -12,7 +12,11 @@ const Responserror = ResponserrorPkg.default ?? ResponserrorPkg;
 const { errorHandler } = new Responserror();
 const app = express();
 
-const responser = responserPkg.default;
+const responser = responserPkg.default;114
+
+app.use(cors({
+  origin:"http://localhost:5173"
+}));
 
 app.use(morgan("dev"));
 app.use(express.json());
