@@ -1,15 +1,14 @@
-
 import { assertEquals } from "@std/assert";
 import { connectToDatabase } from "../database.ts";
 import mongoose from "mongoose";
 
 import app from "../main.ts";
+import { loginCustomer } from "./helpers.ts";
 
 Deno.test("POST /login", async (t) => {
   await connectToDatabase();
 
   const email = `teste@gmail.com`;
-
 
   const server = app.listen(0);
 
@@ -25,7 +24,6 @@ Deno.test("POST /login", async (t) => {
   }
 
   const url = `http://localhost:${address.port}/login`;
-
 
   const logar = (dados: Record<string, unknown>) => {
     return fetch(url, {
@@ -47,7 +45,6 @@ Deno.test("POST /login", async (t) => {
 
     await t.step("não deve logar sem email", async () => {
       const response = await logar({
-
         password: "123456",
       });
 
@@ -62,8 +59,6 @@ Deno.test("POST /login", async (t) => {
       assertEquals(response.status, 400);
     });
 
- 
-
     await t.step("não deve aceitar email inválido", async () => {
       const response = await logar({
         name: "Usuário Teste",
@@ -73,10 +68,7 @@ Deno.test("POST /login", async (t) => {
 
       assertEquals(response.status, 400);
     });
-
-    
   } finally {
-
     await new Promise<void>((resolve, reject) => {
       server.close((error: any) => {
         if (error) reject(error);
@@ -84,10 +76,52 @@ Deno.test("POST /login", async (t) => {
       });
     });
 
+    // await User.deleteMany({ email });
 
-   // await User.deleteMany({ email });
+    await mongoose.disconnect();
+  }
+});
 
-    
+Deno.test("GET /getUserInfo", async (t) => {
+  await connectToDatabase();
+
+  const server = app.listen(0);
+
+  await new Promise<void>((resolve, reject) => {
+    server.once("listening", resolve);
+    server.once("error", reject);
+  });
+
+  const address = server.address();
+
+  const base = `http://localhost:${address.port}`;
+
+  const customerToken = await loginCustomer(base);
+
+  const customerHeader = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${customerToken}`,
+  };
+
+  const getUserURL = `${base}/getUserInfo`;
+
+  try {
+    await t.step("buscar informações do usuário", async () => {
+      const res = await fetch(getUserURL, {
+        method: "GET",
+        headers: customerHeader,
+      });
+
+      assertEquals(res.status, 200);
+    });
+  } finally {
+    await new Promise<void>((resolve, reject) => {
+      server.close((error: any) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+
     await mongoose.disconnect();
   }
 });
