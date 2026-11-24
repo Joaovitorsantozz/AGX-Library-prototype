@@ -1,140 +1,138 @@
 * {
   box-sizing: border-box;
-  padding: 0px;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-
-  font-style: normal;
 }
+
+body {
+  min-width: 320px;
+  background-color: #f5f6f8;
+}
+
 .loginSection {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginContainer {
-  width: 50%;
-  height: 55%;
-  display: flex;
-
-  border-radius: 20px;
-}
-
-.loginContainerLS {
-  width: 50%;
-  height: 100%;
-  border-width: 1px 0px 1px 1px;
-  border-color: #e1e4e6;
-  background-color: #f3f4f5;
-  border-style: solid;
-  border-radius: 20px 0px 0px 20px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  padding: 30px 30px;
-}
-.loginContainerImage {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & > img {
-    width: 100%;
-    height: 85%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-  }
-}
-.loginContainerFooter {
-  width: 100%;
-  display: flex;
-
-  & > .content {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    & > h2 {
-      color: rgb(34, 34, 34);
-      font-size: 18px;
-      font-weight: 600;
-    }
-    & > p {
-      font-size: 13px;
-      font-weight: 400;
-      color: rgb(60, 60, 60);
-    }
-  }
-}
-.loginContainerTitle {
-  width: 100%;
-  display: flex;
-  text-align: left;
-  gap: 15px;
-  & > .content {
-    & > h1 {
-      font-size: 25px;
-      font-weight: 500;
-      color: rgb(41, 41, 41);
-    }
-    & > p {
-      font-size: 15px;
-      margin-top: 5px;
-      color: rgb(60, 60, 60);
-    }
-  }
-  & > .logo {
-    width: 48px;
-    height: 48px;
-    background-color: rgb(21, 45, 77);
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-     & > img{
-        width: 80%;
-        height: 80%;
-        object-fit: contain;
-     }
-  }
-}
-
-.loginContainerRS {
-  width: 50%;
-  height: 100%;
-  border-width: 1px 1px 1px 1px;
-  border-color: rgb(207, 207, 207);
-  border-style: solid;
-  border-radius: 0px 20px 20px 0px;
-}
-
-
-
-.loginSection {
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 40px;
   background-color: #f5f6f8;
 }
 
+.loginContainer {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 620px;
+  display: flex;
+  border-radius: 20px;
 
+  background-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
 
-
+.authContainerLS {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 35px;
+  background-color: #f3f4f5;
+  border-color: #e1e4e6;
+  border-width: 1px 0px 1px 1px;
+  border-style:solid;
+  border-radius: 20px 0px 0px 20px;
+}
 
 .loginContainerRS {
-  flex: 1;
+  width: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 50px;
   background-color: #ffffff;
+  border-color: #e1e4e6;
+  border-width: 1px 1px 1px 1px;
+  border-style:solid;
+  border-radius: 0px 20px 20px 0px;
+}
+.authContainerTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.authContainerTitle .logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(21, 45, 77);
+  border-radius: 15px;
+}
+
+.authContainerTitle .logo img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.authContainerTitle .content h1 {
+  font-size: 25px;
+  font-weight: 500;
+  color: #292929;
+}
+
+.authContainerTitle .content p {
+  margin-top: 5px;
+  font-size: 15px;
+  color: #3c3c3c;
+}
+
+.authContainerImage {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authContainerImage img {
+  width: 100%;
+  height: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.authContainerFooter {
+  width: 100%;
+  display: flex;
+}
+
+.authContainerFooter .content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.authContainerFooter .content h2 {
+  color: #222222;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.authContainerFooter .content p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #3c3c3c;
+  line-height: 1.5;
 }
 
 .loginForm {
@@ -147,16 +145,17 @@
 }
 
 .loginFormHeader h2 {
-  font-size: 30px;
-  margin: 0 0 10px;
+  margin-bottom: 10px;
   color: #17252b;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .loginFormHeader p {
   color: #64748b;
   font-size: 14px;
+  line-height: 1.5;
 }
-
 
 .loginInputGroup {
   display: flex;
@@ -165,10 +164,10 @@
 }
 
 .loginInputGroup label {
-  font-size: 14px;
-  font-weight: 600;
   margin-bottom: 8px;
   color: #24343b;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .loginInputGroup input {
@@ -178,8 +177,9 @@
   border-radius: 8px;
   outline: none;
   font-size: 14px;
-  box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .loginInputGroup input:focus {
@@ -191,16 +191,20 @@
   color: #94a3b8;
 }
 
-
+.loginInputGroup span {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 5px;
+}
 .loginSubmitButton {
   width: 100%;
   padding: 14px;
   border: none;
   border-radius: 8px;
   background-color: #073b46;
-  color: white;
-  font-weight: 600;
+  color: #ffffff;
   font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -208,7 +212,6 @@
 .loginSubmitButton:hover {
   background-color: #0b5361;
 }
-
 
 .loginFormFooter {
   margin-top: 25px;
@@ -218,8 +221,8 @@
 }
 
 .loginFormFooter p {
-  font-size: 13px;
   color: #64748b;
+  font-size: 13px;
 }
 
 .loginFormFooter a {
@@ -232,13 +235,14 @@
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .loginSection {
-    padding: 20px;
+    padding: 25px;
   }
 
   .loginContainer {
-    min-height: auto;
+    max-width: 650px;
+    min-height: 580px;
   }
 
   .loginContainerLS {
@@ -246,7 +250,23 @@
   }
 
   .loginContainerRS {
-    padding: 35px 25px;
+    width: 100%;
+    padding: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginSection {
+    padding: 15px;
+  }
+
+  .loginContainer {
+    min-height: auto;
+    border-radius: 12px;
+  }
+
+  .loginContainerRS {
+    padding: 35px 22px;
   }
 
   .loginFormHeader h2 {
@@ -254,16 +274,537 @@
   }
 }
 
-@media (max-width: 480px) {
-  .loginSection {
-    padding: 10px;
+
+
+
+/*Dashboard separar dps */
+.dashboardLayout {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Sidebar */
+
+.dashboardSidebar {
+  width: 245px;
+  min-height: 100vh;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+}
+
+.sidebarBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 0 5px;
+}
+
+.sidebarLogo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: #073b46;
+  color: white;
+  font-size: 21px;
+}
+
+.sidebarBrand h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sidebarBrand p {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.sidebarNavigation {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebarLink {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border-radius: 7px;
+  color: #334155;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.sidebarLink span {
+  font-size: 16px;
+}
+
+.sidebarLink:hover {
+  background: #f1f5f9;
+}
+
+.sidebarLink.active {
+  background: #073b46;
+  color: white;
+  font-weight: 600;
+}
+
+.sidebarLink small {
+  margin-left: auto;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 10px;
+}
+
+.sidebarUser {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.userAvatar {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dcebf0;
+  color: #073b46;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.userInfo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.userInfo strong {
+  font-size: 11px;
+}
+
+.userInfo span {
+  color: #64748b;
+  font-size: 9px;
+  overflow-wrap: anywhere;
+}
+
+.logoutButton {
+  margin-top: 15px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: #334155;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Área principal */
+
+.dashboardMain {
+  flex: 1;
+  min-width: 0;
+  padding: 30px;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.dashboardHeader h1 {
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.dashboardHeader p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.availableButton {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 7px;
+  background: #073b46;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Indicadores */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.statCard {
+  padding: 20px;
+  border: 1px solid #e0e5e9;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.statCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.statCardHeader > span {
+  color: #475569;
+  font-size: 12px;
+}
+
+.statIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.statIcon.blue {
+  background: #dcecf2;
+  color: #07536a;
+}
+
+.statIcon.green {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.statIcon.orange {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.statValue {
+  display: block;
+  margin-bottom: 4px;
+  color: #17252b;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.statCard p {
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* Catálogo */
+
+.bookCatalog {
+  width: 100%;
+}
+
+.catalogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 17px;
+}
+
+.catalogHeader h2 {
+  margin-bottom: 4px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.catalogHeader p {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.catalogHeader input {
+  width: 280px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  outline: none;
+  background: white;
+  font-size: 12px;
+}
+
+.catalogHeader input:focus {
+  border-color: #073b46;
+  box-shadow: 0 0 0 2px rgba(7, 59, 70, 0.1);
+}
+
+/* Filtros */
+
+.categoryFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.categoryFilters button {
+  padding: 7px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  background: white;
+  color: #334155;
+  font-size: 11px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.categoryFilters button:hover {
+  border-color: #073b46;
+}
+
+.categoryFilters button.selected {
+  border-color: #073b46;
+  background: #073b46;
+  color: white;
+}
+
+/* Grade de livros */
+
+.booksGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.bookCard {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 80%;
+  border-radius: 10px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bookCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Capa vertical do livro */
+
+.bookCover {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  
+}
+
+.bookCover img {
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+}
+
+/* Informações do livro */
+
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 13px;
+}
+
+.bookCategoryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 9px;
+}
+
+.bookCategory {
+  color: #64748b;
+  font-size: 10px;
+}
+
+.bookStatus {
+  flex-shrink: 0;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.bookStatus.available {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.bookStatus.borrowed {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.bookInfo h3 {
+  margin-bottom: 5px;
+  color: #17252b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bookAuthor {
+  margin-bottom: 15px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* Botões do livro */
+
+.bookActions {
+  display: flex;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.detailsButton,
+.borrowButton {
+  min-height: 36px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.detailsButton {
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #17252b;
+}
+
+.detailsButton:hover {
+  background: #f1f5f9;
+}
+
+.borrowButton {
+  flex: 1;
+  border: none;
+  background: #073b46;
+  color: white;
+  transition: background 0.2s;
+}
+
+.borrowButton:hover:not(:disabled) {
+  background: #0b5361;
+}
+
+.borrowButton.disabled,
+.borrowButton:disabled {
+  background: #e5e7eb;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.emptyCatalog {
+  padding: 30px;
+  color: #64748b;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Responsividade */
+
+@media (max-width: 1100px) {
+  .dashboardSidebar {
+    width: 210px;
   }
 
-  .loginContainer {
-    border-radius: 12px;
+  .dashboardMain {
+    padding: 24px;
   }
 
-  .loginContainerRS {
-    padding: 30px 20px;
+  .booksGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 768px) {
+  .dashboardSidebar {
+    display: none;
+  }
+
+  .dashboardMain {
+    padding: 20px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .catalogHeader input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardMain {
+    padding: 15px;
+  }
+
+  .dashboardHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboardHeader h1 {
+    font-size: 21px;
+  }
+
+  .booksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bookCover {
+    height: 280px;
+  }
+} 

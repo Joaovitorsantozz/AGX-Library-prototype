@@ -1,22 +1,33 @@
-import { Form, Formik, Field } from "formik";
+import { Form, Formik, Field, ErrorMessage } from "formik";
 
-import { validateLogin } from "../../validations/loginSchema";
-import type { LoginUserInterface } from "../../interfaces/loginUserInterface";
-import { loginUserService } from "../../services/loginService";
-
-
+import { validateLogin } from "../../../validations/loginSchema";
+import type { LoginUserInterface } from "../../../interfaces/loginUserInterface";
+import { loginUserService } from "../../../services/loginService";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../../context/userContext";
 function LoginForm() {
+  const navigate = useNavigate();
+  const {setUser} = useAuth();
   const handleSubmit = async (values: LoginUserInterface) => {
+
     try {
       const response = await loginUserService(values);
       const token = response.data.data.token;
       localStorage.setItem("token", token);
+  
+      setUser(response.data.data.user);
       alert(response.data.message);
+      navigate("/dashboard");
     } catch (error) {
-      console.log("error", error);
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data?.message ?? "Erro ao realizar login");
+      } else {
+        alert("Ocorreu um erro inesperado");
+      }
     }
+    
   };
-
 
   return (
     <Formik
@@ -38,6 +49,7 @@ function LoginForm() {
             id="email"
             placeholder="seuemail@exemplo.com"
           />
+          <ErrorMessage name="email" component="span"></ErrorMessage>
         </div>
 
         <div className="loginInputGroup">
@@ -48,6 +60,7 @@ function LoginForm() {
             id="password"
             placeholder="Digite sua senha"
           />
+          <ErrorMessage name="password" component="span"></ErrorMessage>
         </div>
 
         <button type="submit" className="loginSubmitButton">
