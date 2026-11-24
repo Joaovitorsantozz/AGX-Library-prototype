@@ -1,14 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 
 import {
+  getUserInfoService,
   loginUserService,
   registerUserService,
 } from "../services/userservice.ts";
 
 import isness from "@zarco/isness";
 import rc from "../utils/rc.ts";
-
-
 
 export async function registerUser(
   req: Request,
@@ -46,6 +45,23 @@ export async function loginUser(
     const result = await loginUserService(email, password);
 
     return res.send_ok("Login realizado", result);
+  } catch (error) {
+    return next(error);
+  }
+}
+export async function getUserInfo(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userID = res.locals.user.userID;
+
+    if (!userID) return res.send_badRequest("Erro ao receber id do usuário");
+
+    const result = await getUserInfoService(userID);
+
+    return res.send_ok("Usuário encontrado", result);
   } catch (error) {
     return next(error);
   }

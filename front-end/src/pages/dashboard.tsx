@@ -2,8 +2,15 @@ import "../index.css";
 import BookCatalog from "../components/dashboard/bookCatalog";
 import Sidebar from "../components/dashboard/sideBar";
 import StatCard from "../components/dashboard/statCard";
+import { useAuth } from "../context/userContext";
+
 
 function Dashboard() {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
   return (
     <main className="dashboardLayout">
       <Sidebar />
@@ -14,18 +21,13 @@ function Dashboard() {
             <h1>Dashboard e Catálogo</h1>
             <p>Visão geral do acervo e consulta rápida de livros.</p>
           </div>
-
-         
         </header>
 
         <section className="statsGrid">
-        
-
           <StatCard
             title="Livros disponíveis"
             value={128}
             description="Prontos para empréstimo"
-            
             variant="green"
           />
 
@@ -33,7 +35,6 @@ function Dashboard() {
             title="Livros emprestados"
             value={14}
             description="Em circulação ativa"
-           
             variant="orange"
           />
         </section>

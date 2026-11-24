@@ -9,3 +9,6 @@ export async function createUser(data: { name: string; email: string; password: 
   return await User.create(data);
 }
 
+export async function getUserInfoRepository(userID:string){
+  return await User.findOne({_id:userID})
+}

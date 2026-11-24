@@ -14,3 +14,9 @@ createRoot(document.getElementById("root")!).render(
     </BrowserRouter>
   </StrictMode>,
 );
+
+//login register
+//dashboard
+//meus emprestimos
+//gerenciar livros
+//livros disponiveis

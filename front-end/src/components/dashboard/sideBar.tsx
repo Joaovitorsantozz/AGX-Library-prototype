@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/userContext";
+import { useEffect } from "react";
 
 function Sidebar() {
-  const {user} = useAuth();
+  const { user, resetUser } = useAuth();
+  const navigate = useNavigate();
+
+
+
   return (
     <aside className="dashboardSidebar">
       <div className="sidebarBrand">
@@ -36,14 +42,20 @@ function Sidebar() {
       </nav>
 
       <div className="sidebarUser">
-        <div className="userAvatar">{user.name.slice(0,2).toUpperCase()}</div>
+        <div className="userAvatar">{user.name.slice(0, 2).toUpperCase()}</div>
         <div className="userInfo">
           <strong>{user.name}</strong>
           <span>{user.email}</span>
         </div>
       </div>
 
-      <button className="logoutButton">
+      <button
+        className="logoutButton"
+        onClick={() => {
+          resetUser();
+          navigate("/login");
+        }}
+      >
         &gt; Sair
       </button>
     </aside>

@@ -1,8 +1,11 @@
-
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import throwlhos from "../utils/throwlhos.ts";
-import { createUser, findByEmail } from "../repository/userRepository.ts";
+import {
+  createUser,
+  findByEmail,
+  getUserInfoRepository,
+} from "../repository/userRepository.ts";
 
 export async function registerUserService(
   name: string,
@@ -41,4 +44,12 @@ export async function loginUserService(email: string, password: string) {
 
   const token = await jwt.sign(payload, SECRET, { expiresIn: "2h" });
   return { token, user: userWithoutPassword };
+}
+
+export async function getUserInfoService(userID: string) {
+  const result = await getUserInfoRepository(userID);
+  if (!result)
+    throw throwlhos.err_notFound("Usuário não encontrado ou id incorreto");
+  const { password: _, ...userWithoutPassword } = result.toObject();
+  return userWithoutPassword;
 }

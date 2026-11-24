@@ -693,7 +693,7 @@ body {
   font-size: 11px;
 }
 
-/* Botões do livro */
+
 
 .bookActions {
   display: flex;
@@ -747,7 +747,7 @@ body {
   font-size: 13px;
 }
 
-/* Responsividade */
+
 
 @media (max-width: 1100px) {
   .dashboardSidebar {
