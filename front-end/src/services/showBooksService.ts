@@ -7,3 +7,12 @@ export const returnBooksService = async () => {
     },
   });
 };
+
+export const returnBorrowedBooksService = async () => {
+  const token = localStorage.getItem("token");
+  return await Axios.get("http://localhost:3000/api/books/user/borrowed", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

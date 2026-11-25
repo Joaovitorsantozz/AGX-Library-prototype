@@ -4,10 +4,27 @@ import Sidebar from "../components/dashboard/sideBar";
 import StatCard from "../components/dashboard/statCard";
 import { useAuth } from "../context/userContext";
 
-
+import { useEffect, useState } from "react";
+import { returnBooksService } from "../services/showBooksService";
+import type { Book } from "../interfaces/BookInterface";
 function Dashboard() {
   const { loading } = useAuth();
+  const [books, setBooks] = useState<Book[]>([]);
+  function handleBookBorrowed(isbn: string) {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.isbn === isbn ? { ...book, status: "borrowed" } : book,
+      ),
+    );
+  }
+  useEffect(() => {
+    async function fetchBooks() {
+      const response = await returnBooksService();
+      setBooks(response.data.data);
+    }
 
+    fetchBooks();
+  }, []);
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -26,23 +43,24 @@ function Dashboard() {
         <section className="statsGrid">
           <StatCard
             title="Livros disponíveis"
-            value={128}
+            value={books.length}
             description="Prontos para empréstimo"
             variant="green"
           />
-
+          {/* 
+Faz mais sentido assim, nao listar o que nao pode ser pego
           <StatCard
             title="Livros emprestados"
-            value={14}
+            value={books.filter((book) => book.status == "borrowed").length}
             description="Em circulação ativa"
             variant="orange"
-          />
+          /> */}
         </section>
 
-        <BookCatalog />
+        <BookCatalog books={books} onBookBorrowed={handleBookBorrowed}  />
       </section>
     </main>
-  );
+  ); 
 }
 
 export default Dashboard;

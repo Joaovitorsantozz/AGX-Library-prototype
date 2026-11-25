@@ -1,19 +1,31 @@
 import type { Book } from "../../interfaces/BookInterface";
 
-
 import placeholder from "../../assets/bookSamplePlaceholder.png";
 import p2 from "../../assets/book2.png";
 import p3 from "../../assets/book3.png";
 import p4 from "../../assets/book4.png";
 import p5 from "../../assets/book5.png";
+import { borrowBookService } from "../../services/borrowBookService";
+import type { OrderBook } from "../../interfaces/orderInterface";
 interface BookCardProps {
   book: Book;
+  onBookBorrowed: (isbn: string) => void;
 }
 
-function BookCard({ book }: BookCardProps) {
-  const isAvailable = book.status === "available";
-  const placholders = [placeholder,p2,p3,p4,p5];
+function BookCard({ book, onBookBorrowed }: BookCardProps) {
+  const placholders = [placeholder, p2, p3, p4, p5];
   const image = placholders[Math.floor(Math.random() * placholders.length)];
+  const borrowBook = async () => {
+    console.log("func chamada");
+    try {
+      const response = await borrowBookService(book.isbn);
+      onBookBorrowed(book.isbn);
+      alert(response.data.message);
+    } catch (error) {
+      alert("Erro ao emprestar livro");
+      console.log(error);
+    }
+  };
   return (
     <article className="bookCard">
       <div className="bookCover">
@@ -24,22 +36,15 @@ function BookCard({ book }: BookCardProps) {
         <div className="bookCategoryRow">
           <span className="bookCategory">{book.genre}</span>
 
-          <span className={`bookStatus ${isAvailable ? "available" : "borrowed"}`}>
-            {isAvailable ? "Disponível" : "Emprestado"}
-          </span>
+          <span className={`bookStatus available`}>{"Disponível"}</span>
         </div>
 
         <h3>{book.name}</h3>
         <p className="bookAuthor">{book.author}</p>
 
         <div className="bookActions">
-      
-
-          <button
-            className={`borrowButton ${!isAvailable ? "disabled" : ""}`}
-            disabled={!isAvailable}
-          >
-            {isAvailable ? "Emprestar" : "Indisponível"}
+          <button className={`borrowButton`} onClick={() => borrowBook()}>
+            {"Emprestar"}
           </button>
         </div>
       </div>

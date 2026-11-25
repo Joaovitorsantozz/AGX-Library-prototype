@@ -31,7 +31,7 @@ function Sidebar() {
           <span>L</span> Livros disponíveis
         </a>
 
-        <a href="/loans" className="sidebarLink">
+        <a href="/myBorrowedBooks" className="sidebarLink">
           <span>M</span> Meus empréstimos
         </a>
 

@@ -41,7 +41,7 @@ body {
   background-color: #f3f4f5;
   border-color: #e1e4e6;
   border-width: 1px 0px 1px 1px;
-  border-style:solid;
+  border-style: solid;
   border-radius: 20px 0px 0px 20px;
 }
 
@@ -54,7 +54,7 @@ body {
   background-color: #ffffff;
   border-color: #e1e4e6;
   border-width: 1px 1px 1px 1px;
-  border-style:solid;
+  border-style: solid;
   border-radius: 0px 20px 20px 0px;
 }
 .authContainerTitle {
@@ -274,11 +274,9 @@ body {
   }
 }
 
-
-
-
 /*Dashboard separar dps */
-.dashboardLayout {
+.dashboardLayout,
+.userBorrowedBooksLayout {
   min-height: 100vh;
   display: flex;
 }
@@ -422,13 +420,14 @@ body {
 
 /* Área principal */
 
-.dashboardMain {
+.dashboardMain,
+.userBorrowedBooksMain {
   flex: 1;
   min-width: 0;
   padding: 30px;
 }
 
-.dashboardHeader {
+.dashboardHeader,.userBorrowedBooksHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -436,13 +435,13 @@ body {
   margin-bottom: 26px;
 }
 
-.dashboardHeader h1 {
+.dashboardHeader h1, .userBorrowedBooksHeader h1 {
   margin-bottom: 5px;
   font-size: 25px;
   font-weight: 600;
 }
 
-.dashboardHeader p {
+.dashboardHeader p, .userBorrowedBooksHeader p {
   color: #64748b;
   font-size: 13px;
 }
@@ -611,7 +610,9 @@ body {
   max-width: 80%;
   border-radius: 10px;
 
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .bookCard:hover {
@@ -628,7 +629,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
 }
 
 .bookCover img {
@@ -639,8 +639,6 @@ body {
   border-radius: 3px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
 }
-
-/* Informações do livro */
 
 .bookInfo {
   display: flex;
@@ -692,8 +690,6 @@ body {
   color: #64748b;
   font-size: 11px;
 }
-
-
 
 .bookActions {
   display: flex;
@@ -747,14 +743,13 @@ body {
   font-size: 13px;
 }
 
-
-
 @media (max-width: 1100px) {
   .dashboardSidebar {
     width: 210px;
   }
 
-  .dashboardMain {
+  .dashboardMain,
+  .userBorrowedBooksMain {
     padding: 24px;
   }
 
@@ -768,7 +763,8 @@ body {
     display: none;
   }
 
-  .dashboardMain {
+  .dashboardMain,
+  .userBorrowedBooksMain {
     padding: 20px;
   }
 
@@ -787,16 +783,17 @@ body {
 }
 
 @media (max-width: 480px) {
-  .dashboardMain {
+  .dashboardMain,
+  .userBorrowedBooksMain {
     padding: 15px;
   }
 
-  .dashboardHeader {
+  .dashboardHeader, .userBorrowedBooksHeader  {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .dashboardHeader h1 {
+  .dashboardHeader h1, .userBorrowedBooksHeader h1 {
     font-size: 21px;
   }
 
@@ -807,4 +804,4 @@ body {
   .bookCover {
     height: 280px;
   }
-} 
+}

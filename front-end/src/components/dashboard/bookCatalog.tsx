@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import BookCard from "./bookCard";
-import { returnBooksService } from "../../services/showBooksService";
+
 import type { Book } from "../../interfaces/BookInterface";
+import type { OrderBook } from "../../interfaces/orderInterface";
+interface BookCatalogProps {
+  books: Book[];
+ 
+  onBookBorrowed: (isbn: string) => void;
+}
 
+function BookCatalog({
+  books,
 
-function BookCatalog() {
+  onBookBorrowed,
+}: BookCatalogProps) {
   const [search, setSearch] = useState("");
-  const [books, setBooks] = useState<Book[]>([]);
 
-  useEffect(() => {
-    async function fetchBooks() {
-      const response = await returnBooksService();
-      setBooks(response.data.data);
-    }
-
-    fetchBooks();
-  }, []);
   return (
     <section className="bookCatalog">
       <div className="catalogHeader">
@@ -34,9 +34,18 @@ function BookCatalog() {
       </div>
 
       <div className="booksGrid">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
+        {books.map((book) => {
+          
+
+          return (
+            <BookCard
+              key={book.id}
+              book={book}
+              onBookBorrowed={onBookBorrowed}
+
+            />
+          );
+        })}
       </div>
     </section>
   );
