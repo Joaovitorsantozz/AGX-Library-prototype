@@ -1,23 +1,27 @@
-import { useState } from "react";
-import type { Book } from "../interfaces/BookInterface";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useState } from "react";
+import type { Book, NewBook } from "../interfaces/BookInterface";
 
-interface NewBook {
-  name: string;
-  author: string;
-  genre: string;
-  isbn: string;
-  publishedYear: number;
-  status: "available" | "borrowed";
-}
+
+import * as yup from "yup";
 
 interface ManageBooksProps {
   books: Book[];
   deleteFunction: (isbn: string) => void;
 }
 
-function ManageBooks({ books,deleteFunction }: ManageBooksProps) {
-  const handleSubmit = () => {};
+function ManageBooks({ books, deleteFunction }: ManageBooksProps) {
+  const handleSubmit = (values: NewBook) => {
+    
+  };
+  const newBookSchema = yup.object().shape({
+    name: yup.string().required(),
+    author: yup.string().required(),
+    genre: yup.string().required(),
+    status: yup.string().required(),
+    isbn: yup.string().required(),
+    publishedYear: yup.number().required(),
+  });
   const [search, setSearch] = useState("");
 
   const filteredBooks = books.filter(
@@ -60,10 +64,11 @@ function ManageBooks({ books,deleteFunction }: ManageBooksProps) {
             author: "",
             genre: "",
             isbn: "",
-            publishedYear: new Date().getFullYear(),
+            publishedYear: 0,
             status: "available" as "available" | "borrowed",
           }}
           onSubmit={handleSubmit}
+          validationSchema={newBookSchema}
         >
           <Form className="bookForm">
             <div className="formGrid">

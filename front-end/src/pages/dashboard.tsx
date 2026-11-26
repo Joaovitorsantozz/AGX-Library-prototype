@@ -45,7 +45,7 @@ function Dashboard() {
         <section className="statsGrid">
           <StatCard
             title="Livros disponíveis"
-            value={books.length}
+            value={books.filter((book)=>book.status==="available").length}
             description="Prontos para empréstimo"
             variant="green"
           />
