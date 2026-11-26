@@ -13,9 +13,10 @@ interface NewBook {
 
 interface ManageBooksProps {
   books: Book[];
+  deleteFunction: (isbn: string) => void;
 }
 
-function ManageBooks({ books }: ManageBooksProps) {
+function ManageBooks({ books,deleteFunction }: ManageBooksProps) {
   const handleSubmit = () => {};
   const [search, setSearch] = useState("");
 
@@ -214,9 +215,7 @@ function ManageBooks({ books }: ManageBooksProps) {
                     <td>
                       <button
                         className="deleteBookButton"
-                        onClick={() => {
-                          //deletar livro
-                        }}
+                        onClick={() => deleteFunction(book.isbn)}
                       >
                         Excluir
                       </button>

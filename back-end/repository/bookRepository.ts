@@ -66,7 +66,15 @@ export async function deleteBookWithExistingOrder(
   bookId: Types.ObjectId,
   session: ClientSession,
 ) {
-  return await Order.deleteMany({ book: bookId }).session(session);
+  return await Order.updateMany(
+    { "books.book": bookId },
+    {
+      $pull: {
+        books: { book: bookId },
+      },
+    },
+    { session },
+  );
 }
 export async function deleteBook(
   bookId: Types.ObjectId,

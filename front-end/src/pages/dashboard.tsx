@@ -1,12 +1,11 @@
-import "../index.css";
 import BookCatalog from "../components/dashboard/bookCatalog";
 import Sidebar from "../components/dashboard/sideBar";
 import StatCard from "../components/dashboard/statCard";
 import { useAuth } from "../context/userContext";
 
 import { useEffect, useState } from "react";
-import { showBooksService } from "../services/showBooksService";
 import type { Book } from "../interfaces/BookInterface";
+import { showBooksService } from "../services/showBooksService";
 function Dashboard() {
   const { loading } = useAuth();
   const [books, setBooks] = useState<Book[]>([]);
@@ -21,14 +20,13 @@ function Dashboard() {
     async function fetchBooks() {
       const response = await showBooksService();
       setBooks(
-        response.data.data.filter(
-          (item: any) => item.status == "available",
-        ),
+        response.data.data.filter((item: any) => item.status == "available"),
       );
     }
 
     fetchBooks();
   }, []);
+  
   if (loading) {
     return <p>Carregando...</p>;
   }

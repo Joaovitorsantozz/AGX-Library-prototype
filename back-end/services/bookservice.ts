@@ -33,23 +33,27 @@ export default async function registerBookService(
 }
 
 export async function deleteBookService(isbn: string) {
-  // tem dois problemas
-  // precisa primeiro excluir o livro da tabela de orders caso exista
-  // precisa excluir o livro da tabela de livros
-  // o correto é ser feito em transação
   const session = await mongoose.startSession();
+
   try {
     return await session.withTransaction(async () => {
-      const book = await findByIsbn(isbn);
+      const book = await findByIsbn(isbn,session);
+
       if (!book) {
         throw throwlhos.err_notFound("Livro não encontrado");
       }
+
       await deleteBookWithExistingOrder(book._id, session);
+
       const deletedBook = await deleteBook(book._id, session);
-      if (!deletedBook) throw throwlhos.err_notFound("Livro não encontrado");
-      return { message : "Livro deleteado com sucesso"};
+
+      if (!deletedBook) {
+        throw throwlhos.err_notFound("Livro não encontrado");
+      }
+
+      return { message: "Livro deletado com sucesso" };
     });
   } finally {
-    session.endSession();
+    await session.endSession();
   }
 }

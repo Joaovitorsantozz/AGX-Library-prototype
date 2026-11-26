@@ -3,7 +3,6 @@ import { useState } from "react";
 import BookCard from "./bookCard";
 
 import type { Book } from "../../interfaces/BookInterface";
-import type { OrderBook } from "../../interfaces/orderInterface";
 interface BookCatalogProps {
   books: Book[];
  

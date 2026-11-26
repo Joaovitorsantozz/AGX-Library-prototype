@@ -1,17 +1,15 @@
+import Axios from "axios";
 import { useEffect, useState } from "react";
 import Sidebar from "../components/dashboard/sideBar";
 import ManageBooks from "../components/manageBookContainer";
 import { useAuth } from "../context/userContext";
-import type { newBook } from "../interfaces/newBookInterface";
-import { showBooksService } from "../services/showBooksService";
 import type { Book } from "../interfaces/BookInterface";
+import { showBooksService } from "../services/showBooksService";
 
 function AdminPage() {
   const { loading } = useAuth();
   const [book, setBooks] = useState<Book[]>([]);
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
+
   useEffect(() => {
     async function fetchBooks() {
       const response = await showBooksService();
@@ -20,10 +18,34 @@ function AdminPage() {
 
     fetchBooks();
   }, []);
+  const deleteBookHandler = async (isbn: String) => {
+    try {
+      const token = localStorage.getItem("token");
+      await Axios.delete("http://localhost:3000/api/books/delete", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data:{
+          isbn:isbn
+        }
+      });
+      alert("Livro deletado");
+      setBooks(book.filter((book) => book.isbn != isbn));
+    } catch (error) {
+      alert("Erro ao deletar livro");
+      console.log("error",error);
+    }
+  };
+    if (loading) {
+    return <p>Carregando...</p>;
+  }
   return (
     <div className="dashboardLayout">
       <Sidebar></Sidebar>
-      <ManageBooks books = {book}></ManageBooks>
+      <ManageBooks
+        books={book}
+        deleteFunction={deleteBookHandler}
+      ></ManageBooks>
     </div>
   );
 }
