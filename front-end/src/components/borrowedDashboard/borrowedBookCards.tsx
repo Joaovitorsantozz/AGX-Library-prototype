@@ -7,28 +7,31 @@ import p4 from "../../assets/book4.png";
 import p5 from "../../assets/book5.png";
 import { borrowBookService } from "../../services/borrowBookService";
 import type { OrderBook } from "../../interfaces/orderInterface";
+import { returnBookService } from "../../services/returnBookService";
 interface BookCardProps {
   book: Book;
-  onBookBorrowed: (isbn: string) => void;
+  onBookReturned: (isbn: string) => void;
 
   order?: OrderBook;
 }
 
-function BorrowedBookCard({ book, onBookBorrowed, order }: BookCardProps) {
-  const isAvailable = status === "available";
+function BorrowedBookCard({ book, onBookReturned, order }: BookCardProps) {
   const placholders = [placeholder, p2, p3, p4, p5];
   const image = placholders[Math.floor(Math.random() * placholders.length)];
-  const borrowBook = async () => {
-    console.log("func chamada");
+
+  async function handleReturnBook() {
     try {
-      const response = await borrowBookService(book.isbn);
-      onBookBorrowed(book.isbn);
-      alert(response.data.message);
+      const response = await returnBookService(book.isbn);
+      onBookReturned(book.isbn);
+      if (response.data.success == true) {
+        alert("Livro devolvido");
+        
+      }
     } catch (error) {
-      alert("Erro ao emprestar livro");
-      console.log(error);
+      alert("Erro ao devolver o livro");
+      console.log("error ao devolver o livro", error);
     }
-  };
+  }
   return (
     <article className="bookCard">
       <div className="bookCover">
@@ -45,10 +48,24 @@ function BorrowedBookCard({ book, onBookBorrowed, order }: BookCardProps) {
         <h3>{book.name}</h3>
         <p className="bookAuthor">{book.author}</p>
         <p className="bookAuthor">
-          {order != null ? order.borrowedAt : "nulo"}
+          Emprestado em:{" "}
+          {order?.borrowedAt
+            ? new Date(order.borrowedAt).toLocaleDateString("pt-BR")
+            : "Indisponível"}
         </p>
+
+        <p className="bookAuthor">
+          Devolver até:{" "}
+          {order?.dueDate
+            ? new Date(order.dueDate).toLocaleDateString("pt-BR")
+            : "Indisponível"}
+        </p>
+        <p>{book.isbn}</p>
         <div className="bookActions">
-          <button className={`borrowButton`} onClick={() =>(console.log("devolver"))}>
+          <button
+            className={`borrowButton`}
+            onClick={() => handleReturnBook()}
+          >
             {"Devolver"}
           </button>
         </div>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import BookCatalog from "../components/dashboard/bookCatalog";
+
 import Sidebar from "../components/dashboard/sideBar";
 import StatCard from "../components/dashboard/statCard";
 import type { Book } from "../interfaces/BookInterface";
-import { returnBorrowedBooksService } from "../services/showBooksService";
+import { showBorrowedBooksService } from "../services/showBooksService";
 import { useAuth } from "../context/userContext";
 import type { OrderBook } from "../interfaces/orderInterface";
 import BorrowedBookCatalog from "../components/borrowedDashboard/borrowedBooksCatalog";
@@ -14,22 +14,37 @@ function UserBorrowedBooks() {
   const { loading } = useAuth();
   useEffect(() => {
     async function fetchBooks() {
-      const response = await returnBorrowedBooksService();
+      const response = await showBorrowedBooksService();
+
       setBooks(
-        response.data.data.orders.map((order: { book: Book }) => order.book),
+        response.data.data.orders.map((order: any) => ({
+          ...order.book,
+          id: order.book._id,
+        })),
       );
       setOrderDate(
         response.data.data.orders.map((order: any) => ({
           book: order.book._id,
           borrowedAt: order.borrowedAt,
-          dueDate: order.dueDate, 
+          dueDate: order.dueDate,
+          status: order.status,
         })),
       );
     }
 
     fetchBooks();
   }, []);
-  function handleReturnBook(isbn: string) {}
+  function handleBookReturned(isbn: string) {
+    setOrderDate((prevOrders) =>
+      prevOrders.map((order) => {
+        const book = books.find((book) => book.isbn === isbn);
+
+        return book && order.book === book.id
+          ? { ...order, status: "returned" }
+          : order;
+      }),
+    );
+  }
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -47,19 +62,18 @@ function UserBorrowedBooks() {
             </p>
           </div>
         </header>
-    
+
         <section className="statsGrid">
           <StatCard
             title="Livros emprestados"
-            value={books.length}
+            value={orderDate.filter((order) => order.status == "active").length}
             description="Não se esqueca de devolver"
             variant="orange"
           />
         </section>
         <BorrowedBookCatalog
           books={books}
-          onBookBorrowed={handleReturnBook}
-         
+          onBookBorrowed={handleBookReturned}
           order={orderDate}
         ></BorrowedBookCatalog>
       </section>

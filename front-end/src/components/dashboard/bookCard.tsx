@@ -17,7 +17,7 @@ function BookCard({ book, onBookBorrowed }: BookCardProps) {
   const image = placholders[Math.floor(Math.random() * placholders.length)];
   const borrowBook = async () => {
     console.log("func chamada");
-    try {
+    try { 
       const response = await borrowBookService(book.isbn);
       onBookBorrowed(book.isbn);
       alert(response.data.message);

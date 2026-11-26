@@ -5,7 +5,10 @@ import StatCard from "../components/dashboard/statCard";
 import { useAuth } from "../context/userContext";
 
 import { useEffect, useState } from "react";
-import { returnBooksService } from "../services/showBooksService";
+import {
+
+  showBooksService,
+} from "../services/showBooksService";
 import type { Book } from "../interfaces/BookInterface";
 function Dashboard() {
   const { loading } = useAuth();
@@ -19,7 +22,7 @@ function Dashboard() {
   }
   useEffect(() => {
     async function fetchBooks() {
-      const response = await returnBooksService();
+      const response = await showBooksService();
       setBooks(response.data.data);
     }
 
@@ -57,10 +60,10 @@ Faz mais sentido assim, nao listar o que nao pode ser pego
           /> */}
         </section>
 
-        <BookCatalog books={books} onBookBorrowed={handleBookBorrowed}  />
+        <BookCatalog books={books} onBookBorrowed={handleBookBorrowed} />
       </section>
     </main>
-  ); 
+  );
 }
 
 export default Dashboard;

@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-
 import type { Book } from "../../interfaces/BookInterface";
 import type { OrderBook } from "../../interfaces/orderInterface";
 import BorrowedBookCard from "./borrowedBookCards";
@@ -37,19 +35,22 @@ function BorrowedBookCatalog({
       </div>
 
       <div className="booksGrid">
-        {books.map((book) => {
-          const bookOrder = order.find((item) => item.book === book.id);
+        {order
+          .filter((item) => item.status === "active")
+          .map((item) => {
+            const book = books.find((book) => book.id === item.book);
 
-          return (
-            <BorrowedBookCard
-              key={book.id}
-              book={book}
-              onBookBorrowed={onBookBorrowed}
-           
-              order={bookOrder}
-            />
-          );
-        })}
+            if (!book) return null;
+
+            return (
+              <BorrowedBookCard
+                key={book.id}
+                book={book}
+                onBookReturned={onBookBorrowed}
+                order={item}
+              />
+            );
+          })}
       </div>
     </section>
   );

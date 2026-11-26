@@ -1,5 +1,9 @@
+import type { Book } from "./BookInterface";
+
 export interface OrderBook {
-  book: string;
+  books: Book[];
+  book:string;
   borrowedAt: string;
   dueDate: string;
+  status:string;
 }
