@@ -12,7 +12,6 @@ interface BookCatalogProps {
 
 function BookCatalog({
   books,
-
   onBookBorrowed,
 }: BookCatalogProps) {
   const [search, setSearch] = useState("");

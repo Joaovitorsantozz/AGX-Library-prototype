@@ -5,6 +5,8 @@ import RegisterPage from "./pages/authUser/register/register";
 import DashBoard from "./pages/dashboard";
 import ProtectedRoute from "./validations/protectedRoute";
 import UserBorrowedBooks from "./pages/userBorrowedBooks";
+import AdminProtectedRoute from "./validations/adminRoute";
+import AdminPage from "./pages/adminPage";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           </ProtectedRoute>
         }
       ></Route>
+      <Route path = "/manage-books" element= {<AdminProtectedRoute><ProtectedRoute><AdminPage/></ProtectedRoute></AdminProtectedRoute>}></Route>
     </Routes>
   );
 }

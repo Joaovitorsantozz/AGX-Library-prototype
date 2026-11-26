@@ -5,10 +5,7 @@ import StatCard from "../components/dashboard/statCard";
 import { useAuth } from "../context/userContext";
 
 import { useEffect, useState } from "react";
-import {
-
-  showBooksService,
-} from "../services/showBooksService";
+import { showBooksService } from "../services/showBooksService";
 import type { Book } from "../interfaces/BookInterface";
 function Dashboard() {
   const { loading } = useAuth();
@@ -23,7 +20,11 @@ function Dashboard() {
   useEffect(() => {
     async function fetchBooks() {
       const response = await showBooksService();
-      setBooks(response.data.data);
+      setBooks(
+        response.data.data.filter(
+          (item: any) => item.status == "available",
+        ),
+      );
     }
 
     fetchBooks();

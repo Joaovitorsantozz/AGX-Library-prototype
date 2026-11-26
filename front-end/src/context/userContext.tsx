@@ -7,6 +7,7 @@ export const UserProvider = ({ children }: any) => {
 
   const resetUser = () => {
     setUser(null);
+    localStorage.removeItem("token");
   };
 
   useEffect(() => {

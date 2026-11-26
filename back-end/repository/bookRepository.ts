@@ -22,10 +22,7 @@ export async function findBookByID(id: string) {
   return await Books.find({ id });
 }
 export async function listAvailableBooksRepository() {
-  return await Books.find(
-    { status: "available" },
-    "name isbn author genre status publishedYear",
-  );
+  return await Books.find();
 }
 
 export async function markAsAvailableIsbn(
