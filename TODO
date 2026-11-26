@@ -1,0 +1,5 @@
+- na hora dos emprestimos na tela do admin colocar o nome de quem emprestou
+- fazer funcionar a barrinha de busca
+- nao mostrar as funções de admin pra quem nao é
+- mostrar o historico de emprestados pro usuário também
+- criar uma função handler na hora de registrar um livro pra quando o admin registrar um livro atualize na hora no historico sem refresh

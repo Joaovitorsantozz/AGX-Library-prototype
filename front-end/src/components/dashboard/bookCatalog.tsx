@@ -5,14 +5,11 @@ import BookCard from "./bookCard";
 import type { Book } from "../../interfaces/BookInterface";
 interface BookCatalogProps {
   books: Book[];
- 
+
   onBookBorrowed: (isbn: string) => void;
 }
 
-function BookCatalog({
-  books,
-  onBookBorrowed,
-}: BookCatalogProps) {
+function BookCatalog({ books, onBookBorrowed }: BookCatalogProps) {
   const [search, setSearch] = useState("");
 
   return (
@@ -32,18 +29,19 @@ function BookCatalog({
       </div>
 
       <div className="booksGrid">
-        {books.map((book) => {
-          
-
-          return (
-            <BookCard
-              key={book.id}
-              book={book}
-              onBookBorrowed={onBookBorrowed}
-
-            />
-          );
-        })}
+        {books
+          .filter((book) =>
+            book.name.toLowerCase().includes(search.toLowerCase()),
+          )
+          .map((book) => {
+            return (
+              <BookCard
+                key={book.id}
+                book={book}
+                onBookBorrowed={onBookBorrowed}
+              />
+            );
+          })}
       </div>
     </section>
   );

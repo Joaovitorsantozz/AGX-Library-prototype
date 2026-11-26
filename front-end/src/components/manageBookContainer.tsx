@@ -4,6 +4,7 @@ import type { Book, NewBook } from "../interfaces/BookInterface";
 
 
 import * as yup from "yup";
+import { registerBookService } from "../services/registerBookService";
 
 interface ManageBooksProps {
   books: Book[];
@@ -11,8 +12,14 @@ interface ManageBooksProps {
 }
 
 function ManageBooks({ books, deleteFunction }: ManageBooksProps) {
-  const handleSubmit = (values: NewBook) => {
-    
+  
+  const handleSubmit = async(values: NewBook) => {
+      try{
+        await registerBookService(values);
+        alert("Livro registrado");
+      }catch(error){
+        console.log("erro ao registrar livro",error);
+      }
   };
   const newBookSchema = yup.object().shape({
     name: yup.string().required(),
