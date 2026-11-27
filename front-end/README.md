@@ -25,7 +25,7 @@ Biblioteca ficcional desenvolvida com React e Typescript com funções básicas,
 - Axios
 - React Router
 - Formik / yup
-- 
+
 ## Como rodar
 
 É necessário ter o Node.js instalado.
