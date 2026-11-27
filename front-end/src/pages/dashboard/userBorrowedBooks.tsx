@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-import Sidebar from "../components/dashboard/sideBar";
-import StatCard from "../components/dashboard/statCard";
-import type { Book } from "../interfaces/BookInterface";
-import { showBorrowedBooksService } from "../services/showBooksService";
-import { useAuth } from "../context/userContext";
-import type { OrderBook } from "../interfaces/orderInterface";
-import BorrowedBookCatalog from "../components/borrowedDashboard/borrowedBooksCatalog";
+import Sidebar from "../../components/dashboard/sideBar";
+import StatCard from "../../components/dashboard/statCard";
+import type { Book } from "../../interfaces/BookInterface";
+import { showBorrowedBooksService } from "../../services/showBooksService";
+import { useAuth } from "../../context/userContext";
+import type { OrderBook } from "../../interfaces/orderInterface";
+import BorrowedBookCatalog from "../../components/borrowedDashboard/borrowedBooksCatalog";
 
 function UserBorrowedBooks() {
   const [books, setBooks] = useState<Book[]>([]);

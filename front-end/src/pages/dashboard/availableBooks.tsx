@@ -1,12 +1,12 @@
-import BookCatalog from "../components/dashboard/bookCatalog";
-import Sidebar from "../components/dashboard/sideBar";
-import StatCard from "../components/dashboard/statCard";
-import { useAuth } from "../context/userContext";
+import BookCatalog from "../../components/dashboard/bookCatalog";
+import Sidebar from "../../components/dashboard/sideBar";
+import StatCard from "../../components/dashboard/statCard";
+import { useAuth } from "../../context/userContext";
 
 import { useEffect, useState } from "react";
-import type { Book } from "../interfaces/BookInterface";
-import { showBooksService } from "../services/showBooksService";
-function Dashboard() {
+import type { Book } from "../../interfaces/BookInterface";
+import { showBooksService } from "../../services/showBooksService";
+function AvailableBooksPage() {
   const { loading } = useAuth();
   const [books, setBooks] = useState<Book[]>([]);
   function handleBookBorrowed(isbn: string) {
@@ -26,7 +26,7 @@ function Dashboard() {
 
     fetchBooks();
   }, []);
-  
+
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -45,7 +45,7 @@ function Dashboard() {
         <section className="statsGrid">
           <StatCard
             title="Livros disponíveis"
-            value={books.filter((book)=>book.status==="available").length}
+            value={books.filter((book) => book.status === "available").length}
             description="Prontos para empréstimo"
             variant="green"
           />
@@ -65,4 +65,4 @@ Faz mais sentido assim, nao listar o que nao pode ser pego
   );
 }
 
-export default Dashboard;
+export default AvailableBooksPage;

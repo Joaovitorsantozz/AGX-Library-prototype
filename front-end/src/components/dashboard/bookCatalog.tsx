@@ -11,10 +11,10 @@ interface BookCatalogProps {
 
 function BookCatalog({ books, onBookBorrowed }: BookCatalogProps) {
   const [search, setSearch] = useState("");
-
+  
   return (
     <section className="bookCatalog">
-      <div className="catalogHeader">
+      <div className="catalogHeader"> 
         <div>
           <h2>Catálogo de livros</h2>
           <p>Pesquise por título, autor ou filtre por categoria.</p>

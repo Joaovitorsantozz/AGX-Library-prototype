@@ -14,10 +14,14 @@ interface BookCardProps {
 
 function BookCard({ book, onBookBorrowed }: BookCardProps) {
   const placholders = [placeholder, p2, p3, p4, p5];
-  const image = placholders[Math.floor(Math.random() * placholders.length)];
+  const index =
+    book.isbn.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) %
+    placholders.length;
+
+  const image = placholders[index];
   const borrowBook = async () => {
     console.log("func chamada");
-    try { 
+    try {
       const response = await borrowBookService(book.isbn);
       onBookBorrowed(book.isbn);
       alert(response.data.message);
@@ -36,15 +40,26 @@ function BookCard({ book, onBookBorrowed }: BookCardProps) {
         <div className="bookCategoryRow">
           <span className="bookCategory">{book.genre}</span>
 
-          <span className={`bookStatus available`}>{"Disponível"}</span>
+          <span
+            className={`bookStatus ${book.status === "available" ? "available" : "borrowed"}`}
+          >
+            {book.status === "available" ? "Disponível" : "Emprestado"}
+          </span>
         </div>
 
         <h3>{book.name}</h3>
         <p className="bookAuthor">{book.author}</p>
 
-        <div className="bookActions">
-          <button className={`borrowButton`} onClick={() => borrowBook()}>
-            {"Emprestar"}
+        <div className={"bookActions"}>
+          <button
+            className={`borrowButton ${book.status === "available" ? "" : "disabled"}`}
+            onClick={() =>
+              book.status === "available"
+                ? borrowBook()
+                : alert("Esse livro já esta emprestado")
+            }
+          >
+            {book.status === "available" ? "Emprestar" : "Emprestado"}
           </button>
         </div>
       </div>

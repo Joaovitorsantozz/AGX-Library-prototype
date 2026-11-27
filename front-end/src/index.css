@@ -284,14 +284,17 @@ body {
 /* Sidebar */
 
 .dashboardSidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 245px;
-  min-height: 100vh;
+  height: 100vh;
   padding: 22px 16px;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   background: #ffffff;
   border-right: 1px solid #e2e8f0;
+  overflow-y: auto;
 }
 
 .sidebarBrand {
@@ -424,6 +427,7 @@ body {
 .userBorrowedBooksMain {
   flex: 1;
   min-width: 0;
+  margin-left: 245px;
   padding: 30px;
 }
 
@@ -725,9 +729,6 @@ body {
   transition: background 0.2s;
 }
 
-.borrowButton:hover:not(:disabled) {
-  background: #0b5361;
-}
 
 .borrowButton.disabled,
 .borrowButton:disabled {

@@ -1,10 +1,10 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import Sidebar from "../components/dashboard/sideBar";
-import ManageBooks from "../components/manageBookContainer";
-import { useAuth } from "../context/userContext";
-import type { Book } from "../interfaces/BookInterface";
-import { showBooksService } from "../services/showBooksService";
+import Sidebar from "../../components/dashboard/sideBar";
+import ManageBooks from "../../components/manageBookContainer";
+import { useAuth } from "../../context/userContext";
+import type { Book } from "../../interfaces/BookInterface";
+import { showBooksService } from "../../services/showBooksService";
 
 function AdminPage() {
   const { loading } = useAuth();

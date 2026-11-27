@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/userContext";
-import { useState } from "react";
+
 
 function Sidebar() {
   const { user, resetUser } = useAuth();
-  const [option, setOption] = useState("dashboard");
+
   const navigate = useNavigate();
 
   return (
@@ -13,57 +13,45 @@ function Sidebar() {
         <div className="sidebarLogo">L</div>
         <div>
           <h2>AGX Library</h2>
-          <p>Biblioteca Acadêmica</p>
+          <p>Biblioteca Ficcional</p>
         </div>
       </div>
-      
+
       <nav className="sidebarNavigation">
-        {" "}
+       
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
             isActive ? "sidebarLink active" : "sidebarLink"
           }
         >
-          {" "}
-          <span>D</span> Dashboard{" "}
-        </NavLink>{" "}
+          <span>T</span> Todos os Livros
+        </NavLink>
+        
         <NavLink
-          to="/catalog"
+          to="/availableBooks"
           className={({ isActive }) =>
             isActive ? "sidebarLink active" : "sidebarLink"
           }
         >
-          {" "}
-          <span>L</span> Catálogo{" "}
-        </NavLink>{" "}
-        <NavLink
-          to="/available"
-          className={({ isActive }) =>
-            isActive ? "sidebarLink active" : "sidebarLink"
-          }
-        >
-          {" "}
-          <span>L</span> Livros disponíveis{" "}
-        </NavLink>{" "}
+          <span>L</span> Livros disponíveis
+        </NavLink>
         <NavLink
           to="/myBorrowedBooks"
           className={({ isActive }) =>
             isActive ? "sidebarLink active" : "sidebarLink"
           }
         >
-          {" "}
-          <span>M</span> Meus empréstimos{" "}
-        </NavLink>{" "}
-        <NavLink
+          <span>M</span> Meus empréstimos
+        </NavLink>
+        {user.role==="admin" ? <NavLink
           to="/manage-books"
           className={({ isActive }) =>
             isActive ? "sidebarLink active" : "sidebarLink"
           }
         >
-          {" "}
-          <span>G</span> Gerenciar livros <small>Admin</small>{" "}
-        </NavLink>{" "}
+          <span>G</span> Gerenciar livros <small>Admin</small>
+        </NavLink> : ""}
       </nav>
       <div className="sidebarUser">
         <div className="userAvatar">{user.name.slice(0, 2).toUpperCase()}</div>

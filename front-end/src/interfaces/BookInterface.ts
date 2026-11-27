@@ -7,7 +7,7 @@ export interface Book {
   genre: string;
   status: "available" | "borrowed";
   publishedYear: number;
-  image: "../assets/bookSamplePlaceholder.png";
+  image: "";
 }
 export interface NewBook {
   name: string;
