@@ -13,12 +13,14 @@ Trata dos assuntos do front-end, explicando melhor as telas, suas respectivas te
 
 ## Como subir os dois servidores ao mesmo tempo
 
-Na pasta raiz do projeto fora das pastas back-end e front-end digite npm install para instalar concurrently
+Na pasta raiz do projeto fora das pastas back-end e front-end digite npm install para instalar o concurrently
 
 após isso rode
 
 ``` npm run dev```
+
 ( é necessário ter instalado as dependências tanto no front quanto no back ja)
+
 Isso irá rodar os dois servidores ao mesmo tempo, note que o front-end **precisa** que o back-end esteja rodando também para que o projeto funcione corretamente
 
 Se tudo correr certo irá aparecer uma mensagem parecida com
