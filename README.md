@@ -18,7 +18,7 @@ Na pasta raiz do projeto fora das pastas back-end e front-end digite npm install
 após isso rode
 
 ``` npm run dev```
-
+( é necessário ter instalado as dependências tanto no front quanto no back ja)
 Isso irá rodar os dois servidores ao mesmo tempo, note que o front-end **precisa** que o back-end esteja rodando também para que o projeto funcione corretamente
 
 Se tudo correr certo irá aparecer uma mensagem parecida com
@@ -44,3 +44,6 @@ Se tudo correr certo irá aparecer uma mensagem parecida com
 
 
 Consulte as pastas back-end e front-end para mais informações sobre cada área.
+
+- https://github.com/Joaovitorsantozz/AGX-Library-prototype/tree/main/back-end
+- https://github.com/Joaovitorsantozz/AGX-Library-prototype/tree/main/front-end
